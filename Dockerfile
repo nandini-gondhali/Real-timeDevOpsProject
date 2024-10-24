@@ -1,9 +1,9 @@
 FROM centos:latest
 
 # Install necessary packages
-RUN yum install -y httpd zip unzip
+RUN yum install -y httpd zip unzip curl
 
-# Download the zip file using curl instead of ADD
+# Download the zip file using curl
 RUN curl -L -o /var/www/html/photogenic.zip https://www.free-css.com/assets/files/free-css-templates/download/pae254/photogenic.zip
 
 # Set the working directory
@@ -22,4 +22,4 @@ RUN rm -rf photogenic photogenic.zip
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
 # Expose port 80
-EXPOSE 80 8181
+EXPOSE 80
