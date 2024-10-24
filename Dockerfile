@@ -22,4 +22,4 @@ RUN rm -rf 2133_moso_interior 2133_moso_interior.zip
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 80 8181
