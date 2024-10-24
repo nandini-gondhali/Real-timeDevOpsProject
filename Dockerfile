@@ -3,20 +3,20 @@ FROM centos:latest
 # Install necessary packages
 RUN yum install -y httpd zip unzip
 
-# Add the zip file to the specified location
-ADD https://www.tooplate.com/zip-templates/2133_moso_interior.zip /var/www/html/
+# Download the zip file using curl instead of ADD
+RUN curl -L -o /var/www/html/photogenic.zip https://www.free-css.com/assets/files/free-css-templates/download/pae254/photogenic.zip
 
 # Set the working directory
 WORKDIR /var/www/html/
 
 # Unzip the contents of the zip file
-RUN unzip 2133_moso_interior.zip
+RUN unzip photogenic.zip
 
-# Corrected the folder name "photogeneic" to "photogenic"
-RUN cp -rvf 2133_moso_interior/* . 
+# Correct the folder name "photogeneic" to "photogenic"
+RUN cp -rvf photogenic/* .
 
 # Clean up the unnecessary files
-RUN rm -rf 2133_moso_interior 2133_moso_interior.zip
+RUN rm -rf photogenic photogenic.zip
 
 # Command to run the HTTP server in the foreground
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
